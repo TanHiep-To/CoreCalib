@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta content="Medical vision-language models (VLMs) show promise for clinical image understanding, but their computational and memory requirements hinder deployment on..." name="description">
+<meta content="CoreCalib, Medical Vision-Language Models, Post-Training Quantization, Calibration Data Selection, Resource-Efficient AI, Medical Visual Question Answering" name="keywords">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+  <meta content="Density-Aware Calibration for Resource-Efficient Medical Vision-Language Models" property="og:title">
+  <meta content="Medical vision-language models (VLMs) show promise for clinical image understanding, but their computational and memory requirements hinder deployment on..." property="og:description">
+  <meta content="website" property="og:type">
+  <meta content="https://tanhiep-to.github.io/CoreCalib/static/images/fig1.png" property="og:image">
+<title>Density-Aware Calibration for Resource-Efficient Medical Vision-Language Models</title>
+
+
+
+<link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+<link href="./static/css/bulma.min.css" rel="stylesheet">
+<link href="./static/css/bulma-carousel.min.css" rel="stylesheet">
+<link href="./static/css/bulma-slider.min.css" rel="stylesheet">
+<link href="./static/css/fontawesome.all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" rel="stylesheet">
+<link href="./static/css/index.css" rel="stylesheet">
+<link href="./static/images/favicon.svg" rel="icon">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script defer src="./static/js/fontawesome.all.min.js"></script>
+<script src="./static/js/bulma-carousel.min.js"></script>
+<script src="./static/js/bulma-slider.min.js"></script>
+<script src="./static/js/index.js"></script>
+</head>
+<body>
+<nav aria-label="main navigation" class="navbar" role="navigation">
+<div class="navbar-brand">
+<a aria-expanded="false" aria-label="menu" class="navbar-burger" role="button">
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+<span aria-hidden="true"></span>
+</a>
+</div>
+<div class="navbar-menu">
+<div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+<a aria-label="Home" class="navbar-item" href="https://tanhiep-to.github.io/CoreCalib/">
+<span class="icon">
+<i class="fas fa-home"></i>
+</span>
+</a>
+
+</div>
+</div>
+</nav>
+<section class="hero">
+<div class="hero-body">
+<div class="container is-max-desktop">
+<div class="columns is-centered">
+<div class="column has-text-centered">
+<h1 class="title is-1 publication-title">Density-Aware Calibration for Resource-Efficient Medical Vision-Language Models</h1>
+<div class="is-size-5 publication-authors">
+<span class="author-block">Tien-Dat&nbsp;Dam<sup>1,2</sup>,</span>
+<span class="author-block">Huu-Thuan&nbsp;Huynh<sup>1,2</sup>,</span>
+<span class="author-block">Minh-Triet&nbsp;Tran<sup>1,2</sup>,</span>
+<span class="author-block">Trung-Nghia&nbsp;Le<sup>1,2*</sup></span>
+</div>
+<div class="is-size-5 publication-authors">
+<span class="author-block"><sup>1</sup>University of Science, Ho Chi Minh City, Vietnam,</span>
+<span class="author-block"><sup>2</sup>Vietnam National University, Ho Chi Minh City, Vietnam</span>
+</div>
+
+          <div class="is-size-5 publication-authors">
+<span class="author-block"><sup>*</sup>Corresponding&nbsp;author</span>
+</div>
+<div class="column has-text-centered">
+<div class="publication-links">
+<span class="link-block">
+<a aria-disabled="true" class="external-link button is-normal is-rounded is-dark" disabled title="Coming soon">
+<span class="icon">
+<i class="fas fa-file-pdf"></i>
+</span>
+<span>Paper&nbsp;(coming&nbsp;soon)</span>
+</a>
+</span>
+<span class="link-block">
+<a aria-disabled="true" class="external-link button is-normal is-rounded is-dark" disabled title="Coming soon">
+<span class="icon">
+<i class="fab fa-github"></i>
+</span>
+<span>Code&nbsp;(coming&nbsp;soon)</span>
+</a>
+</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="hero teaser">
+<div class="container is-max-desktop">
+<div class="hero-body">
+
+<img alt="Three-panel diagram: deployment constraints for medical VLMs, the four steps of CoreCalib calibration set construction, and its use with different quantization methods" class="interpolation-image" height="1059" loading="lazy" src="./static/images/fig1.png" width="1440">
+      <h2 class="subtitle has-text-centered">CoreCalib builds compact calibration sets for quantizing medical vision-language models, raising METEOR from 0.5672&nbsp;to 0.6234&nbsp;with W4A8&nbsp;MASQuant under&nbsp;a&nbsp;128-pair&nbsp;budget.</h2>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="container is-max-desktop">
+
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
+<h2 class="title is-3">Abstract</h2>
+<div class="content has-text-justified"><p>Medical vision-language models (VLMs) show promise for clinical image understanding, but their computational and memory requirements hinder deployment on resource-constrained clinical hardware. Post-training quantization (PTQ) offers a practical compression strategy without retraining, yet its effectiveness depends strongly on the calibration data. We propose CoreCalib, a training-free and quantizer-agnostic framework for constructing compact calibration sets that preserve the target medical VQA distribution. CoreCalib stratifies data by clinical question class, identifies representative visual modes using frozen DINOv2 features with UMAP and HDBSCAN, and expands selected images into class-balanced question-answer&nbsp;pairs.</p><p>On Kvasir-VQA-x1, we evaluate CoreCalib with MASQuant, GPTQ, and QIG using a fixed 128-pair budget. CoreCalib achieves the best METEOR with all three quantizers and the best ROUGE-L with MASQuant and GPTQ. With W4A8&nbsp;MASQuant, it improves METEOR from 0.5672&nbsp;with COCO calibration to 0.6234,&nbsp;recovering approximately 41%&nbsp;of the degradation relative to BF16. These results support CoreCalib as a data-centric component for resource-efficient medical&nbsp;VLM&nbsp;deployment.</p></div>
+</div>
+</div>
+
+
+
+
+</div>
+</section>
+
+
+<section class="section">
+<div class="container is-max-desktop">
+
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
+<h2 class="title is-3">Method</h2>
+<div class="content has-text-justified"><p>CoreCalib is a training-free and quantizer-agnostic framework that constructs a compact calibration set in three stages. The first stage stratifies the training data by&nbsp;clinical&nbsp;question&nbsp;class.</p><p>The second stage embeds images with a frozen DINOv2 encoder, reduces the representation with UMAP, and uses HDBSCAN to retrieve real representative images from high-density regions. The third stage expands these representatives into their available question-answer pairs and fills the fixed calibration budget with a class-balanced&nbsp;round-robin&nbsp;policy.</p><p>The resulting calibration set is passed unchanged to an existing post-training quantization algorithm. CoreCalib does not modify the fine-tuned model or the internal objective&nbsp;of&nbsp;the&nbsp;quantizer.</p></div>
+</div>
+</div>
+
+
+
+
+</div>
+</section>
+
+
+<section class="section">
+<div class="container is-max-desktop">
+
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
+<h2 class="title is-3">Quantitative Results</h2>
+
+<h2 class="subtitle has-text-centered"><strong>Table&nbsp;1.</strong> Comparison of calibration strategies on the Kvasir-VQA-x1 test set. Best in bold, second&nbsp;best&nbsp;underlined.</h2><div class="table-container"><table class="table is-fullwidth is-hoverable"><thead><tr><th scope="col">Quantizer</th><th scope="col">Calibration</th><th scope="col">BLEU &uarr;</th><th scope="col">ROUGE-L &uarr;</th><th scope="col">METEOR &uarr;</th></tr></thead><tbody><tr><th rowspan="1" scope="rowgroup">Half precision (BF16)</th><th scope="row"></th><td>0.4964</td><td>0.7005</td><td>0.7040</td></tr><tr><th rowspan="4" scope="rowgroup">MASQuant (W4A8)</th><th scope="row">COCO</th><td>0.3313</td><td>0.5486</td><td>0.5672</td></tr><tr><th scope="row">Random</th><td>0.3827</td><td>0.5991</td><td><u>0.6170</u></td></tr><tr><th scope="row">K-Means</th><td><strong>0.3954</strong></td><td><u>0.6063</u></td><td><u>0.6170</u></td></tr><tr><th scope="row">CoreCalib&nbsp;(Ours)</th><td><u>0.3943</u></td><td><strong>0.6103</strong></td><td><strong>0.6234</strong></td></tr><tr><th rowspan="4" scope="rowgroup">GPTQ (W4A16)</th><th scope="row">COCO</th><td>0.4172</td><td>0.6373</td><td>0.6545</td></tr><tr><th scope="row">Random</th><td><u>0.4438</u></td><td><u>0.6586</u></td><td>0.6625</td></tr><tr><th scope="row">K-Means</th><td>0.4380</td><td>0.6554</td><td><u>0.6642</u></td></tr><tr><th scope="row">CoreCalib&nbsp;(Ours)</th><td><strong>0.4473</strong></td><td><strong>0.6608</strong></td><td><strong>0.6649</strong></td></tr><tr><th rowspan="4" scope="rowgroup">QIG (W4A8)</th><th scope="row">COCO</th><td><strong>0.3099</strong></td><td>0.5310</td><td>0.5513</td></tr><tr><th scope="row">Random</th><td>0.3041</td><td><strong>0.5321</strong></td><td><u>0.5565</u></td></tr><tr><th scope="row">K-Means</th><td>0.3048</td><td>0.5235</td><td>0.5494</td></tr><tr><th scope="row">CoreCalib&nbsp;(Ours)</th><td><u>0.3054</u></td><td><u>0.5313</u></td><td><strong>0.5581</strong></td></tr></tbody></table></div><div class="content has-text-justified"><p>Within each quantizer, CoreCalib obtains the best METEOR: 0.6234&nbsp;with MASQuant, 0.6649&nbsp;with GPTQ and 0.5581&nbsp;with QIG. It also has the best ROUGE-L with MASQuant and GPTQ. The half-precision BF16&nbsp;model&nbsp;scores&nbsp;0.7040&nbsp;METEOR.</p></div><h2 class="subtitle has-text-centered"><strong>Table&nbsp;2.</strong> Ablation of CoreCalib components with MASQuant (W4A8) on Kvasir-VQA-x1. Strat.: question-class stratification; Discovery: how representative images are selected; Rank: which representative of each cluster is used. Best in bold, second&nbsp;best&nbsp;underlined.</h2><div class="table-container"><table class="table is-fullwidth is-hoverable"><thead><tr><th scope="col">Variant</th><th scope="col">Strat.</th><th scope="col">Discovery</th><th scope="col">Rank</th><th scope="col">BLEU &uarr;</th><th scope="col">ROUGE-L &uarr;</th><th scope="col">METEOR &uarr;</th></tr></thead><tbody><tr><th scope="row">Random</th><td>&checkmark;</td><td>-</td><td>-</td><td>0.3827</td><td>0.5991</td><td>0.6170</td></tr><tr><th scope="row">K-Means</th><td>&checkmark;</td><td>K-Means</td><td>1st</td><td><u>0.3954</u></td><td><u>0.6063</u></td><td>0.6170</td></tr><tr><th scope="row">w/o&nbsp;stratification</th><td>&times;</td><td>HDBSCAN</td><td>1st</td><td>0.3905</td><td>0.6029</td><td><u>0.6190</u></td></tr><tr><th scope="row">2nd&nbsp;member</th><td>&checkmark;</td><td>HDBSCAN</td><td>2nd</td><td><strong>0.4002</strong></td><td>0.6014</td><td>0.6173</td></tr><tr><th scope="row">CoreCalib</th><td>&checkmark;</td><td>HDBSCAN</td><td>1st</td><td>0.3943</td><td><strong>0.6103</strong></td><td><strong>0.6234</strong></td></tr></tbody></table></div><div class="content has-text-justified"><p>The full CoreCalib configuration has the best ROUGE-L (0.6103) and METEOR (0.6234). Using the second cluster member gives the best BLEU (0.4002), and removing stratification lowers&nbsp;METEOR&nbsp;to&nbsp;0.6190.</p></div></div>
+</div>
+
+
+
+
+</div>
+</section>
+
+
+<section class="section">
+<div class="container is-max-desktop">
+
+<div class="columns is-centered has-text-centered">
+<div class="column is-four-fifths">
+<h2 class="title is-3">Qualitative Results</h2>
+
+<div class="content has-text-justified"><p>Answers of the W4A8&nbsp;MASQuant model under different calibration sets are compared for three question types: abnormality presence, polyp count and polyp type. Green marks answers consistent with the ground truth and red marks incorrect&nbsp;clinical&nbsp;content.</p></div><div class="content has-text-centered"><img alt="Three endoscopy images, each with a question, the ground truth, and the answers of models calibrated with COCO, Random, K-Means and CoreCalib" class="interpolation-image" height="840" loading="lazy" src="./static/images/fig2.png" width="853"></div><h2 class="subtitle has-text-centered"><strong>Figure&nbsp;2.</strong> Qualitative examples on the Kvasir-VQA-x1 test set with MASQuant (W4A8) under different calibration sets. Green and red mark answers that are consistent with and contradict the ground truth,&nbsp;respectively.</h2></div>
+</div>
+
+
+
+
+</div>
+</section>
+
+<section class="section" id="BibTeX">
+<div class="container is-max-desktop content">
+<h2 class="title">BibTeX</h2>
+<pre><code>@misc{damdensityaware,
+  author = {Dam, Tien-Dat and Huynh, Huu-Thuan and Tran, Minh-Triet and Le, Trung-Nghia},
+  title  = {Density-Aware Calibration for Resource-Efficient Medical Vision-Language Models},
+}</code></pre>
+</div>
+</section>
+<footer class="footer">
+<div class="container">
+<div class="content has-text-centered">
+
+
+</div>
+<div class="columns is-centered">
+<div class="column is-8">
+<div class="content">
+<p>
+            This website is licensed under a <a href="http://creativecommons.org/licenses/by-sa/4.0/" rel="license">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+<p>
+            This means you are free to borrow the <a href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+          </p>
+</div>
+</div>
+</div>
+</div>
+</footer>
+</body>
+</html>
